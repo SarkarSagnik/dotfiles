@@ -17,9 +17,12 @@ set $mod Mod4
 #Caps-lock keyboard issue
 exec_always --no-startup-id sh -c "sleep 1 && setxkbmap -option"
 
+#Authorisation pop-ups for administrative access
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 #Wallpaper
-exec --no-startup-id feh --bg-scale /home/sagnik/Pictures/Calm/warrior.jpg
+exec --no-startup-id feh --bg-scale /home/sagnik/Pictures/walls-catppuccin-mocha/swirly-painting.jpg
 exec --no-startup-id xrdb -merge ~/.Xresources
 
 # kill any hanging polybar processes
@@ -64,7 +67,10 @@ exec --no-startup-id nm-applet
 #Dunst notification manager
 exec --no-startup-id dunst
 
-# Use pactl to adjust volume in PulseAudio.
+#Redshift night-light manager
+exec --no-startup-id redshift-gtk
+
+# Using pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -152,6 +158,25 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+# Workspace-app bindings
+# App-to-workspace assignment rules
+assign [class="Zen"] $ws1
+assign [class="Docker Desktop"] $ws2
+assign [class="alacritty"] $ws3
+assign [class="discord"] $ws4
+assign [class="Steam"] $ws5
+
+# Catch windows early
+for_window [title="Steam"] move to workspace $ws5
+for_window [class="alacritty"] move to workspace $ws3
+
+# Autostart apps in order (slowest to fastest)
+exec --no-startup-id sh -c 'steam'
+exec --no-startup-id sh -c 'sleep 2; /opt/docker-desktop/bin/docker-desktop'
+exec --no-startup-id sh -c 'sleep 4; flatpak run com.discordapp.Discord'
+exec --no-startup-id sh -c 'sleep 6; flatpak run app.zen_browser.zen'
+exec --no-startup-id sh -c 'sleep 8; i3-msg "workspace 3; exec alacritty"'
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1

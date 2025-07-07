@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 set $mod Mod4
 # set $mod Mod1
@@ -134,6 +134,17 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+##### i3-gaps ##############
+for_window [class=".*"] border pixel 2 #*
+gaps inner 20
+gaps outer 1
+gaps horizontal 2
+
+################# i3-radius #######################
+smart_borders on
+smart_borders no_gaps
+border_radius 2
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -168,6 +179,7 @@ assign [class="discord"] $ws4
 assign [class="Steam"] $ws5
 
 # Catch windows early
+for_window [title="Zen*"] move to workspace $ws1
 for_window [title="Steam"] move to workspace $ws5
 for_window [class="alacritty"] move to workspace $ws3
 

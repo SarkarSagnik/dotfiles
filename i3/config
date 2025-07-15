@@ -22,13 +22,18 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 #Wallpaper
-exec --no-startup-id feh --bg-scale /home/sagnik/Pictures/walls-catppuccin-mocha/swirly-painting.jpg
+exec --no-startup-id feh --bg-scale /home/sagnik/Pictures/walls-catppuccin-mocha/cold-alley.png
 exec --no-startup-id xrdb -merge ~/.Xresources
 
 # kill any hanging polybar processes
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/polybar/scripts/rofi_powermenu.sh
+
+# Kill any existing eww processes
+#exec_always --no-startup-id pkill eww
+# Start eww daemon and open bar
+#exec_always --no-startup-id ~/.config/eww/bar/launch
 
 bindsym Print exec maim "/home/$USER/Pictures/Screenshots/$(date).jpg"
 bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date).jpg"
@@ -135,10 +140,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 ##### i3-gaps ##############
-for_window [class=".*"] border pixel 2 #*
-gaps inner 20
+for_window [class=".*"] border pixel 4 #*
+gaps inner 50
 gaps outer 1
-gaps horizontal 2
+gaps horizontal 1
 
 ################# i3-radius #######################
 smart_borders on
@@ -170,25 +175,32 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# Workspace-app bindings
-# App-to-workspace assignment rules
+# Workspace definitions (limited to 4 workspaces)
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+
+# App-to-workspace assignments
 assign [class="Zen"] $ws1
 assign [class="Docker Desktop"] $ws2
-assign [class="alacritty"] $ws3
-assign [class="discord"] $ws4
-assign [class="Steam"] $ws5
+assign [class="Alacritty"] $ws3
+assign [class="Steam"] $ws4
 
-# Catch windows early
-for_window [title="Zen*"] move to workspace $ws1
-for_window [title="Steam"] move to workspace $ws5
-for_window [class="alacritty"] move to workspace $ws3
+# Handle edge cases for Steam
+for_window [title="^Steam$"] move to workspace $ws4
+
+# Ensure Zen Browser moves to ws1 when its window appears
+for_window [class="Zen"] move to workspace $ws1
 
 # Autostart apps in order (slowest to fastest)
 exec --no-startup-id sh -c 'steam'
 exec --no-startup-id sh -c 'sleep 2; /opt/docker-desktop/bin/docker-desktop'
-exec --no-startup-id sh -c 'sleep 4; flatpak run com.discordapp.Discord'
-exec --no-startup-id sh -c 'sleep 6; flatpak run app.zen_browser.zen'
+exec --no-startup-id sh -c 'sleep 6; i3-msg "workspace 1; exec flatpak run app.zen_browser.zen"'
 exec --no-startup-id sh -c 'sleep 8; i3-msg "workspace 3; exec alacritty"'
+
+# Ensure Alacritty gets focus on workspace 3
+for_window [class="Alacritty"] focus
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1

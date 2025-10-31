@@ -1,0 +1,117 @@
+/* === Everforest Dark Soft Color Palette === */
+@define-color bg0        #2d353b;
+@define-color bg1        #343f44;
+@define-color bg2        #3c494f;
+@define-color bg3        #48585f;
+@define-color fg         #d3c6aa;
+@define-color fg_highlight #e1dca8;
+@define-color green      #a7c080;
+@define-color dark_green #76946a;
+@define-color blue       #7fbbb3;
+@define-color sky        #83b499;
+@define-color aqua       #8ab3b5;
+@define-color yellow     #dbbc7f;
+@define-color orange     #d699b6;
+@define-color red        #e67e80;
+@define-color purple     #d699b6;
+
+/* === Base Styling === */
+* {
+  font-family: 'CaskaydiaMono Nerd Font', monospace;
+  font-size: 18px;
+}
+
+/* Window */
+window {
+  margin: 0px;
+  padding: 12px;
+  border: 1px solid @blue;
+  border-radius: 8px;
+  background-color: @bg0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Inner Box */
+#inner-box {
+  margin: 6px;
+  padding: 8px;
+  background-color: @bg1;
+  border-radius: 6px;
+}
+
+/* Outer Box */
+#outer-box {
+  margin: 6px;
+  padding: 8px;
+  background-color: @bg1;
+  border-radius: 6px;
+}
+
+/* Scroll */
+#scroll {
+  margin: 0;
+  padding: 0;
+  background-color: @bg2;
+}
+
+/* Input */
+#input {
+  margin: 6px 20px;
+  padding: 10px;
+  border: 1px solid @aqua;
+  border-radius: 6px;
+  color: @fg;
+  background-color: @bg2;
+  outline: none;
+}
+
+#input image {
+  color: @yellow;
+}
+
+#input * {
+  outline: none;
+}
+
+/* Text */
+#text {
+  margin: 6px;
+  color: @fg;
+  transition: color 0.2s ease;
+}
+
+/* Entry List */
+#entry {
+  margin: 2px 0;
+  padding: 8px 10px;
+  background-color: @bg1;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+#entry arrow {
+  color: @blue;
+}
+
+/* Selected Entry */
+#entry:selected {
+  border: 1px solid @green;
+  background-color: rgba(167, 192, 128, 0.15);
+}
+
+#entry:selected #text {
+  color: @green;
+  font-weight: bold;
+}
+
+/* Active Drop Target */
+#entry:drop(active) {
+  background-color: @green !important;
+  color: #1e2428;
+}
+
+/* Hover-like effect (if supported) */
+#entry:hover {
+  background-color: @bg2;
+}   

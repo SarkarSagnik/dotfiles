@@ -1,0 +1,82 @@
+/* === Wofi Everforest Theme === */
+/* File: ~/.config/wofi/style.css */
+@import '/home/yhwach/.config/wofi/everforest.css';
+
+* {
+    font-family: 'CaskaydiaMono Nerd Font';
+    font-size: 14px;
+}
+
+
+/* === Window === */
+window {
+    margin: 0px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: @bg0;
+}
+
+/* === Inner Box === */
+#inner-box {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: @bg1;
+}
+
+/* === Outer Box === */
+#outer-box {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: @bg1;
+    border-radius: 6px;
+}
+
+/* === Scroll === */
+#scroll {
+    margin: 0px;
+    padding: 10px;
+    border: none;
+}
+
+/* === Input === */
+#input {
+    margin: 10px 25px 10px 25px;
+    padding: 10px;
+    color: @green;
+    background-color: @bg2;
+    border: 2px solid @green;
+    border-radius: 5px;
+}
+
+/* === Text === */
+#text {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: @fg;
+}
+
+/* === Selected Entry === */
+#entry:selected {
+    background-color: @bg2;
+    border: 1px solid @blue;
+    border-radius: 5px;
+}
+
+#entry:selected #text {
+    color: @fg_highlight;
+}
+
+/* === Icons === */
+image {
+    margin-left: 10px;
+}
+
+/* Hide right-side input icon */
+#input > image.right {
+    -gtk-icon-transform: scaleX(0);
+}
+

@@ -19,7 +19,7 @@ vol=$(get_volume)
 muted=$(get_mute)
 
 if [ "$muted" = "true" ]; then
-    text="<b>Volume Muted</b>"
+    text="Volume Muted"
     value=0
 else
     text="Volume ${vol}%"

@@ -1,0 +1,62 @@
+@import "colors.css";
+
+/* Base window styling */
+window#waybar {
+    background: transparent;
+}
+
+/* Global resets */
+* {
+    color: @fg_light;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    font-family: "CaskadiaMono Nerd Font", monospace;
+    font-size: 12px;
+}
+
+
+/* Common module styling */
+#clock,
+#bluetooth,
+#battery,
+#cpu,
+#network,
+#pulseaudio,
+#memory,
+#workspaces,
+#custom-shutdown,
+#mpris {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1px 10px;
+    background: rgba(0, 0, 0, 0.15);
+    transition: all 300ms cubic-bezier(0.38, 1.21, 0.22, 1);
+}
+
+/* Hover effects */
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#network:hover,
+#pulseaudio:hover,
+#memory:hover,
+#workspaces:hover,
+#mpris:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    padding: 1px 15px;
+    border-radius: 20px;
+}
+
+/* Spacing adjustments */
+#workspaces { margin-left: 7px; }
+
+/* State-based styling */
+#battery.critical,
+#memory.critical,
+#cpu.critical {
+    color: #d80000;
+}
+
+#battery.warning {
+    color: orange;
+}   

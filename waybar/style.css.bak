@@ -1,0 +1,138 @@
+/* === WAYBAR STYLE: EVERFOREST THEME === */
+@import "colors.css";
+
+/* === BASE === */
+* {
+  background: transparent;
+  color: @fg_light;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "CaskaydiaMono Nerd Font", monospace;
+  font-size: 12px;
+}
+
+/* === MAIN BAR CONTAINER === */
+window#waybar {
+    background: transparent;
+    margin-top: 8px;          /* change the value to whatever you like */
+}
+
+/* === DYNAMIC ISLANDS === */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: alpha(@bg_dark, 0.9);
+  border-radius: 2px;
+  padding: 4px 8px;
+  margin: 0 8px;
+  box-shadow: none;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.modules-left:hover,
+.modules-center:hover,
+.modules-right:hover {
+  background: alpha(@bg_light, 0.95);
+}
+
+/* === WORKSPACES === */
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 2px;
+  min-width: 9px;
+  color: @fg_light;
+  font-family: "CaskaydiaMono Nerd Font";
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+  background: @accent_green;
+  color: @bg_dark;
+  border: 1px solid @accent_green;
+}
+
+#workspaces button.empty {
+  opacity: 0.4;
+}
+
+#workspaces button:hover {
+  background: alpha(@accent_green, 0.25);
+}
+
+/* === MODULES === */
+#tray,
+#cpu,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-update,
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin: 0 7.5px;
+  transition: color 0.2s ease-in-out;
+}
+
+#custom-expand-icon {
+  margin-right: 7px;
+}
+
+/* Tooltips */
+tooltip {
+  background: alpha(@tooltip_bg, 0.95);
+  color: @tooltip_fg;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* === MODULE-SPECIFIC === */
+#custom-update {
+  font-size: 10px;
+  color: @accent_blue;
+}
+
+#clock {
+  margin-left: 8.75px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 8.75px;
+  font-size: 10px;
+  color: @accent_red;
+}
+
+#custom-screenrecording-indicator.active {
+  color: @accent_orange;
+}
+
+/* === BATTERY STATES === */
+#battery.warning {
+  color: @accent_yellow;
+}
+
+#battery.critical {
+  color: @accent_red;
+}
+
+#battery.charging {
+  color: @accent_green;
+}
+
+/* === NETWORK & BLUETOOTH STATES === */
+#network.disconnected {
+  color: @accent_red;
+}
+
+#bluetooth.connected {
+  color: @accent_blue;
+}
+

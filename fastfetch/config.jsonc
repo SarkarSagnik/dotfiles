@@ -1,0 +1,150 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "auto",
+        "source": "~/.config/themes/nika/output.txt",
+        "position": "top",
+        "color": {
+            "1": "green"
+        },
+        "padding": {
+            "top": 1,
+            "bottom":1,
+            "right": 0,
+            "left": 0
+        }
+    },
+    "modules": [
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
+        },
+        {
+            "type": "host",
+            "key": "│  PC",
+            "keyColor": "green"
+        },
+        {
+            "type": "cpu",
+            "key": "│ ├ CPU",
+            "showPeCoreCount": true,
+            "keyColor": "green"
+        },
+        {
+            "type": "gpu",
+            "key": "│ ├ GPU",
+            "detectionMethod": "pci",
+            "keyColor": "green"
+        },
+        {
+            "type": "display",
+            "key": "│ ├󱄄 Display",
+            "keyColor": "green"
+        },
+        {
+            "type": "disk",
+            "key": "│ ├󰋊 Disk",
+            "keyColor": "green"
+        },
+        {
+            "type": "memory",
+            "key": "│ ├ Memory",
+            "keyColor": "green"
+        },
+        {
+            "type": "swap",
+            "key": "│ └󰓡 Swap",
+            "keyColor": "green"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
+        },
+        {
+            "type": "command",
+            "key": "│  OS",
+            "keyColor": "blue",
+            "text": "echo \"$(grep ^PRETTY_NAME= /etc/os-release | cut -d= -f2 | tr -d '\"')\""
+        },
+        {
+            "type": "command",
+            "key": "│ ├󰘬 Git",
+            "keyColor": "blue",
+            "text": "echo \"$(git --version 2>/dev/null || echo 'no git')\""
+        },
+        {
+            "type": "kernel",
+            "key": "│ ├ Kernel",
+            "keyColor": "blue"
+        },
+        {
+            "type": "wm",
+            "key": "│ ├ WM",
+            "keyColor": "blue"
+        },
+        {
+            "type": "de",
+            "key": "│ ├ DE",
+            "keyColor": "blue"
+        },
+        {
+            "type": "terminal",
+            "key": "│ ├ Terminal",
+            "keyColor": "blue"
+        },
+        {
+            "type": "packages",
+            "key": "│ ├󰏖 Packages",
+            "keyColor": "blue",
+            "text": "pacman -Qq | wc -l 2>/dev/null || dpkg --list | grep '^ii' | wc -l"
+        },
+        {
+            "type": "wmtheme",
+            "key": "│ ├󰉼 WM Theme",
+            "keyColor": "blue"
+        },
+        {
+            "type": "command",
+            "key": "│ ├󰸌 Theme",
+            "keyColor": "blue",
+            "text": "theme=$(cat ~/.config/fastfetch/themes/everforest/theme.txt); echo \"$theme\""
+        },
+        {
+            "type": "terminalfont",
+            "key": "│ └ Font",
+            "keyColor": "blue"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m┌────────────────────Uptime / Age────────────────────┐"
+        },
+        {
+            "type": "command",
+            "key": "│ 󱦟 OS Age",
+            "keyColor": "magenta",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); days=$(( (current-birth_install)/86400 )); echo \"$days days\""
+        },
+        {
+            "type": "uptime",
+            "key": "│ 󱫐 Uptime",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        },
+        "break"
+    ]
+}
+

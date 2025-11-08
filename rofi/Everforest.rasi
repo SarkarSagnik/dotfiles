@@ -1,0 +1,153 @@
+/* Everforest-inspired theme */
+
+* {
+  /* Dark background tones */
+  ever0:    #2D353B; /* Deepest bg (base) */
+  ever1:    #363E44; /* Slightly lighter bg */
+  ever2:    #414B50; /* Mid background */
+  ever3:    #525C61; /* Highlight/panel bg */
+
+  /* Light foreground / text */
+  ever4:    #D3C6AA; /* Main text (soft beige) */
+  ever5:    #C5BDA9; /* Secondary text */
+  ever6:    #B9B099; /* Tertiary / subtle text */
+
+  /* Muted accents */
+  ever7:    #87908A; /* Comments / inactive */
+  ever8:    #7F897F; /* Subdued hints */
+  ever9:    #6B736B; /* Borders / edges */
+  ever10:   #5C635C; /* Deeper borders */
+
+  /* Accent colors */
+  green:    #A7C080; /* Soft forest green */
+  blue:     #7FBBB3; /* Stream-like teal */
+  aqua:     #8ABEB7; /* Lighter water tone */
+  yellow:   #DBBC7F; /* Autumn leaf yellow */
+  orange:   #E69875; /* Warm amber */
+  red:      #E67E80; /* Soft coral */
+  purple:   #D699B6; /* Muted lavender */
+
+  /* Darker variants */
+  greendark: #96A877;
+  bluedark:  #72A59E;
+  reddark:   #D06E70;
+  yellowdark: #C4A86A;
+
+  /* UI variables */
+  foreground: @ever4;
+  background-color: transparent;
+
+  highlight: underline bold #C5BDA9;
+
+  transparent: rgba(0, 0, 0, 0.1);
+}
+
+/* UI layout rules remain the same */
+window {
+  location: center;
+  anchor: center;
+  border-radius: 0px;
+  height: 560px;
+  width: 600px;
+  background-color: @transparent;
+  spacing: 0;
+  children: [mainbox];
+  orientation: horizontal;
+}
+
+mainbox {
+  spacing: 0;
+  children: [inputbar, message, listview];
+}
+
+message {
+  padding: 10px;
+  border: 0px 2px 2px 2px;
+  border-color: @ever0;
+  background-color: @transparent;
+}
+
+inputbar {
+  color: @ever6;
+  padding: 14px;
+  background-color: @transparent;
+  border: 4px;
+  border-color: @ever6;
+  border-radius: 0px;
+}
+
+entry,
+prompt,
+case-indicator {
+  text-font: inherit;
+  text-color: inherit;
+}
+
+prompt {
+  margin: 0px 1em 0em 0em;
+}
+
+listview {
+  padding: 8px;
+  border-radius: 0px;
+  border: 0px 4px 4px 4px;
+  border-color: @ever6;
+  background-color: @transparent;
+  dynamic: false;
+}
+
+element {
+  padding: 5px;
+  vertical-align: 0.5;
+  border-radius: 0px;
+  color: @foreground;
+  text-color: @ever6;
+  background-color: @transparent;
+}
+
+element.normal.active {
+  background-color: @green;
+}
+
+element.normal.urgent {
+  background-color: @reddark;
+}
+
+element.selected.normal {
+  background-color: @ever7;
+  text-color: @ever0;
+}
+
+element.selected.active {
+  background-color: @yellowdark;
+}
+
+element.selected.urgent {
+  background-color: @red;
+}
+
+element.alternate.normal {
+  background-color: @transparent;
+}
+
+element-text,
+element-icon {
+  size: 3ch;
+  margin: 0 10 0 0;
+  vertical-align: 0.5;
+  text-color: @ever6;
+}
+
+button {
+  padding: 6px;
+  color: @foreground;
+  horizontal-align: 0.5;
+  border: 2px 0px 2px 2px;
+  border-radius: 0px;
+  border-color: @foreground;
+}
+
+button.selected.normal {
+  border: 2px 0px 2px 2px;
+  border-color: @foreground;
+}   

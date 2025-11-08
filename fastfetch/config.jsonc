@@ -6,10 +6,9 @@
         "height": 10
     },
     "display": {
-        "separator": " "
+        "separator": " │ "
     },
     "modules": [
-        // Hardware Section
         {
             "type": "host",
             "key": "╭─󰌢",
@@ -25,6 +24,20 @@
             "key": "├─󰍛",
             "keyColor": "green"
         },
+
+        {
+            "type": "command",
+            "key": "├─",
+            "keyColor": "yellow",
+            "text": "df -hT / | awk 'NR==2 {print $6 \" used (\" $3 \"/\" $2 \") [\" $2 \"] (Internal)\"}'"
+        },
+        {
+            "type": "command",
+            "key": "├─",
+            "keyColor": "magenta",
+            "text": "if findmnt /mnt/CRUCIAL > /dev/null 2>&1; then df -hT /mnt/CRUCIAL | awk 'NR==2 {print $6 \" used (\" $3 \"/\" $2 \") [\" $2 \"] (External)\"}'; fi"
+        },
+
         {
             "type": "memory",
             "key": "├─󰑭",
@@ -36,7 +49,7 @@
             "keyColor": "green"
         },
         "break",
-        // Software Section
+
         {
             "type": "title",
             "key": "╭─",
@@ -63,7 +76,7 @@
             "type": "command",
             "key": "├─󱦟",
             "keyColor": "blue",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); days=$(( (current - birth_install) / 86400 )); echo \"$days days old\""
+            "text": "echo \"$(($(($(date +%s)-$(stat -c %W /)) / 86400))) days since install\""
         },
         {
             "type": "uptime",

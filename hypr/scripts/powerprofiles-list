@@ -1,0 +1,9 @@
+#!/bin/bash
+# Lists available power profiles
+
+/usr/bin/powerprofilesctl list | awk '
+/^\s*[* ]\s*[a-zA-Z0-9\-]+:$/ {
+  gsub(/^[*[:space:]]+|:$/,"");
+  print
+}'
+

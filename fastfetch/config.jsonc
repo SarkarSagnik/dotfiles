@@ -1,87 +1,79 @@
+// Inspired by Catnap
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "source": "~/.config/fastfetch/logo.png",
-        "width": 25,
-        "height": 10
+    "source": "~/.config/fastfetch/logo.png",
+    "width": 25,
+    "height":10
     },
     "display": {
-        "separator": " │ "
+        "separator": " "
     },
     "modules": [
         {
-            "type": "host",
-            "key": "╭─󰌢",
-            "keyColor": "green"
+            "key": "╭───────────╮",
+            "type": "custom"
         },
         {
+            "key": "│ {#34}{icon} distro  {#keys}│",
+            "type": "os"
+        },
+        {
+            "key": "│ {#35} kernel  {#keys}│",
+            "type": "kernel"
+        },
+        {
+            "key": "│ {#36} wm      {#keys}│",
+            "type": "wm"
+        },
+        {
+            "key": "│ {#36}󰇄 desktop {#keys}│",
+            "type": "de"
+        },
+        {
+            "key": "│ {#31} term    {#keys}│",
+            "type": "terminal"
+        },
+        {
+            "key": "│ {#32} shell   {#keys}│",
+            "type": "shell"
+        },
+        {
+            "key": "│ {#33}󰍛 cpu     {#keys}│",
             "type": "cpu",
-            "key": "├─󰻠",
-            "keyColor": "green"
+            "showPeCoreCount": true
         },
         {
             "type": "gpu",
-            "key": "├─󰍛",
-            "keyColor": "green"
-        },
-
-        {
-            "type": "command",
-            "key": "├─",
-            "keyColor": "yellow",
-            "text": "df -hT / | awk 'NR==2 {print $6 \" used (\" $3 \"/\" $2 \") [\" $2 \"] (Internal)\"}'"
+	          "key": "│ {#35}󰢮 gpu     {#keys}│",
+	          "hideType": "integrated",
+            "format": "{1} {2}"
         },
         {
-            "type": "command",
-            "key": "├─",
-            "keyColor": "magenta",
-            "text": "if findmnt /mnt/CRUCIAL > /dev/null 2>&1; then df -hT /mnt/CRUCIAL | awk 'NR==2 {print $6 \" used (\" $3 \"/\" $2 \") [\" $2 \"] (External)\"}'; fi"
-        },
-
-        {
-            "type": "memory",
-            "key": "├─󰑭",
-            "keyColor": "green"
+            "key": "│ {#34}󰉉 disk    {#keys}│",
+            "type": "disk",
+            "folders": "/"
         },
         {
-            "type": "display",
-            "key": "╰─󰍹",
-            "keyColor": "green"
-        },
-        "break",
-
-        {
-            "type": "title",
-            "key": "╭─",
-            "format": "{1}@{2}",
-            "keyColor": "blue"
+            "key": "│ {#36} memory  {#keys}│",
+            "type": "memory"
         },
         {
-            "type": "os",
-            "key": "├─󰣇",
-            "keyColor": "blue"
+            "key": "│ {#33}󰅐 uptime  {#keys}│",
+            "type": "uptime"
         },
         {
-            "type": "kernel",
-            "key": "├─",
-            "format": "{1} {2}",
-            "keyColor": "blue"
+            "key": "├───────────┤",
+            "type": "custom"
         },
         {
-            "type": "packages",
-            "key": "├─󰏖",
-            "keyColor": "blue"
+            "key": "│ {#39} colors  {#keys}│",
+            "type": "colors",
+            "symbol": "circle"
         },
         {
-            "type": "command",
-            "key": "├─󱦟",
-            "keyColor": "blue",
-            "text": "echo \"$(($(($(date +%s)-$(stat -c %W /)) / 86400))) days since install\""
-        },
-        {
-            "type": "uptime",
-            "key": "╰─󰅐",
-            "keyColor": "blue"
+            "key": "╰───────────╯",
+            "type": "custom"
         }
     ]
 }

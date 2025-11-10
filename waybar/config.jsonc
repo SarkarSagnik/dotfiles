@@ -77,7 +77,7 @@
       "cpu": {
           "interval": 5,
           "format": "󰍛",
-          "on-click": "ghostty -e btop",
+          "on-click": "ghostty -e 'btop'",
           "tooltip-format": "CPU usage: {usage}%"
       },
 
@@ -98,6 +98,7 @@
               "critical": 10
           },
           "tooltip": false,
+          "on-click": "~/.config/hypr/scripts/power-profile",
           "on-double-click": "pkill waybar && waybar"
       },
 
@@ -113,7 +114,7 @@
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
         "spacing": 1,
-        "on-click": "nm-connection-editor" //ghostty -e nmtui-go
+        "on-click": "ghostty -e nmtui-go" //ghostty -e nmtui-go
     },
 
     "pulseaudio": {
@@ -131,7 +132,7 @@
         "format-disabled": "󰂲",
         "format-connected": "",
         "tooltip-format": "Connected devices: {num_connections}",
-        "on-click": "blueman-manager"
+        "on-click": "blueberry"
     },
 
     "mpris": {
@@ -150,4 +151,4 @@
         ],
         "dynamic-len": 30
     }
-}   
+}

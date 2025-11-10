@@ -113,7 +113,7 @@
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
         "spacing": 1,
-        "on-click": "ghostty -e nmtui-go" //nm-connection-editor
+        "on-click": "nm-connection-editor" //ghostty -e nmtui-go
     },
 
     "pulseaudio": {

@@ -1,75 +1,101 @@
 [global]
-# Display
+### Display ###
+monitor = 0
 follow = mouse
-width = 350
+width = 320
 height = 100
 origin = top-right
-offset = 35x35
-indicate_hidden = yes
+offset = 30x30
+gap_size = 10
 notification_limit = 5
-gap_size = 12
+indicate_hidden = yes
 padding = 12
-horizontal_padding = 20
+horizontal_padding = 18
 frame_width = 1
+corner_radius = 12
 sort = no
+transparency = 10             # Soft transparency for compositor setups
 
-# Progress bar
+### Progress Bar ###
 progress_bar = true
+progress_bar_height = 6
 progress_bar_frame_width = 0
-progress_bar_height = 8
-progress_bar_corner_radius = 4
-progress_bar_min_width = 150
-progress_bar_max_width = 320
+progress_bar_corner_radius = 3
+progress_bar_min_width = 140
+progress_bar_max_width = 300
+progress_bar_background = "#414b50"
+progress_bar_foreground = "#a7c080"
 
-# Colors
-foreground = "#cdd6f4"      # text
-frame_color = "#89b4fa"     # blue
+### Colors — Everforest (Dark Soft) ###
+# https://github.com/sainnhe/everforest
+background = "#2d353b"          # bg0 (deep gray-green)
+foreground = "#d3c6aa"          # fg (soft beige)
+frame_color = "#a7c080"         # green accent
 separator_color = frame
-highlight = "#89b4fa"       # blue
+highlight = "#a7c080"           # green for progress/selection
 
-# Text
+### Text ###
 font = JetBrainsMono Nerd Font 10
 markup = full
-format = "<big><b>%s</b></big>\n%b"
+format = "<b>%s</b>\n%b"
 alignment = left
 vertical_alignment = center
 show_age_threshold = -1
 hide_duplicate_count = false
+ellipsize = middle
 
-# Icon
+### Icons ###
 icon_position = left
-min_icon_size = 54
-max_icon_size = 80
-icon_path = /usr/share/icons/Papirus-Dark/status/96:/usr/share/icons/Papirus-Dark/status/symbolic
+min_icon_size = 48
+max_icon_size = 72
 icon_corner_radius = 6
+icon_path = /usr/share/icons/Papirus-Dark/status/96:/usr/share/icons/Papirus-Dark/status/symbolic
 
-# Misc/Advanced
-dmenu = rofi --show drun --prompt 'Open with'
-corner_radius = 10
+### Behavior ###
+stack_duplicates = true
+ignore_newline = no
+indicate_hidden = yes
+show_indicators = no
+progress_bar_inline = false
 
-# Mouse
+### Misc ###
+dmenu = rofi --show drun --prompt "Open with"
+browser = xdg-open
+
+### Mouse ###
 mouse_left_click = close_current
 mouse_middle_click = do_action, close_current
 mouse_right_click = close_all
 
+
+###########################
+#     Urgency Levels      #
+###########################
+
 [urgency_low]
-background = "#1e1e2e"      # base
-foreground = "#cdd6f4"      # text
+background = "#2d353b"          # bg0
+foreground = "#d3c6aa"          # fg
+frame_color = "#a7c080"         # green
 timeout = 3
 
 [urgency_normal]
-background = "#1e1e2e"      # base
-foreground = "#cdd6f4"      # text
-timeout = 8
+background = "#343f44"          # bg1
+foreground = "#d3c6aa"          # fg
+frame_color = "#7fbbb3"         # aqua
+timeout = 6
 
 [urgency_critical]
-background = "#1e1e2e"      # base
-foreground = "#cdd6f4"      # text
-frame_color = "#fab387"     # peach
-highlight = "#fab387, #fab387"
+background = "#3a464c"          # bg2
+foreground = "#d3c6aa"          # fg
+frame_color = "#e67e80"         # red
+highlight = "#e67e80"
 timeout = 0
 
-# Rules
+
+###########################
+#         Rules           #
+###########################
+
 [fullscreen_delay_everything]
 fullscreen = delay
 

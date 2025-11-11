@@ -55,6 +55,11 @@
             "folders": "/"
         },
         {
+            "key": "│ {#34}󰉉 External{#keys}│",
+            "type": "disk",
+            "folders": ["/run/media/yhwach/CRUCIAL"]
+        },
+        {
             "key": "│ {#36} memory  {#keys}│",
             "type": "memory"
         },

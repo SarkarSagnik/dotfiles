@@ -98,7 +98,7 @@
               "critical": 10
           },
           "tooltip": false,
-          "on-click": "~/.config/hypr/scripts/power-profile",
+          "on-click": "xfce4-power-manager-settings",
           "on-double-click": "pkill waybar && waybar"
       },
 
@@ -113,8 +113,7 @@
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
-        "spacing": 1,
-        "on-click": "ghostty -e nmtui-go" //ghostty -e nmtui-go
+        "spacing": 1
     },
 
     "pulseaudio": {
@@ -139,11 +138,11 @@
         "format": "{player_icon}  {dynamic}",
         "format-paused": "{status_icon} <i>{dynamic}</i>",
         "player-icons": {
-            "default": "",
-            "mpv": ""
+            "default": "▶",
+            "mpv": "▶"
         },
         "status-icons": {
-            "paused": "⏸"
+            "paused": "❙❙"
         },
         "dynamic-order": [
             "title",

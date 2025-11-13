@@ -1,0 +1,23 @@
+/* === AKAGAMI WAYBAR COLOR PALETTE === */
+/* Warm rosewood tones with soft neutrals for a refined dark aesthetic */
+
+@define-color bg_dark         #1a1111;
+@define-color bg_dim          #221919;
+@define-color bg_light        #322827;
+
+@define-color fg_light        #f0dede;
+@define-color fg_dim          #d7c1c1;
+
+/* Accents — drawn from primary, secondary, tertiary hues */
+@define-color accent_red      #ffb3b4;
+@define-color accent_rose     #e6bdbc;
+@define-color accent_gold     #e5c18d;
+@define-color accent_wine     #8f4a4d;
+@define-color accent_tan      #ffddb0;
+@define-color accent_pink     #ffdad9;
+
+/* Supporting tones */
+@define-color border_color    #524343;
+@define-color tooltip_bg      #271d1d;
+@define-color tooltip_fg      #f0dede;
+

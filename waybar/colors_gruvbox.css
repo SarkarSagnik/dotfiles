@@ -1,0 +1,21 @@
+/* === GRUVBOX WAYBAR COLOR PALETTE === */
+/* Warm, contrasty tones with an earthy retro feel */
+
+@define-color bg_dark         #282828;
+@define-color bg_dim          #32302f;
+@define-color bg_light        #3c3836;
+
+@define-color fg_light        #ebdbb2;
+@define-color fg_dim          #a89984;
+
+@define-color accent_blue     #458588;
+@define-color accent_green    #98971a;
+@define-color accent_yellow   #d79921;
+@define-color accent_orange   #d65d0e;
+@define-color accent_red      #cc241d;
+@define-color accent_purple   #b16286;
+
+@define-color border_color    #504945;
+@define-color tooltip_bg      #3c3836;
+@define-color tooltip_fg      #ebdbb2;
+

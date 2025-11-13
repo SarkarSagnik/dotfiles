@@ -1,0 +1,21 @@
+/* === OSAKA JADE WAYBAR COLOR PALETTE === */
+/* Deep green ambience with refined jade undertones */
+
+@define-color bg_dark         #0f1412;
+@define-color bg_dim          #16211c;
+@define-color bg_light        #1c2b24;
+
+@define-color fg_light        #d8e2cf;
+@define-color fg_dim          #9cab95;
+
+@define-color accent_blue     #5fa5a1;
+@define-color accent_green    #7ebc85;
+@define-color accent_yellow   #d1b774;
+@define-color accent_orange   #d88c65;
+@define-color accent_red      #c76b5a;
+@define-color accent_purple   #b38fb3;
+
+@define-color border_color    #33443a;
+@define-color tooltip_bg      #1c2b24;
+@define-color tooltip_fg      #d8e2cf;
+

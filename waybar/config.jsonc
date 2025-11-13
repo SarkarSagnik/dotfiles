@@ -98,7 +98,7 @@
               "critical": 10
           },
           "tooltip": false,
-          "on-click": "xfce4-power-manager-settings",
+          "on-click": "~/.config/hypr/scripts/power-profile",
           "on-double-click": "pkill waybar && waybar"
       },
 

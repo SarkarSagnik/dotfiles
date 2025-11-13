@@ -1,0 +1,155 @@
+/* Gruvbox-inspired theme */
+
+* {
+  /* Dark background tones */
+  ever0:    #282828;
+  ever1:    #32302f;
+  ever2:    #3c3836;
+  ever3:    #504945;
+
+  /* Light foreground / text */
+  ever4:    #ebdbb2;
+  ever5:    #d5c4a1;
+  ever6:    #bdae93;
+
+  /* Muted accents */
+  ever7:    #a89984;
+  ever8:    #928374;
+  ever9:    #7c6f64;
+  ever10:   #665c54;
+
+  /* Accent colors */
+  green:    #98971a;
+  blue:     #458588;
+  aqua:     #689d6a;
+  yellow:   #d79921;
+  orange:   #d65d0e;
+  red:      #cc241d;
+  purple:   #b16286;
+
+  /* Darker variants */
+  greendark: #79740e;
+  bluedark:  #076678;
+  reddark:   #9d0006;
+  yellowdark: #b57614;
+
+  /* UI variables */
+  foreground: @ever4;
+  background-color: transparent;
+
+  highlight: underline bold #d5c4a1;
+
+  transparent: rgba(0, 0, 0, 0.1);
+  translucent: rgba(0, 0, 0, 0.45);
+}
+
+/* --- Layout and UI styling identical to Everforest --- */
+window {
+  location: center;
+  anchor: center;
+  border-radius: 0px;
+  height: 280px;
+  width: 600px;
+  background-color: @translucent;
+  spacing: 0;
+  children: [mainbox];
+  orientation: horizontal;
+}
+
+mainbox {
+  spacing: 0;
+  children: [inputbar, message, listview];
+}
+
+message {
+  padding: 10px;
+  border: 0px 2px 2px 2px;
+  border-color: @ever0;
+  background-color: @transparent;
+}
+
+inputbar {
+  color: @ever6;
+  padding: 14px;
+  background-color: @transparent;
+  border: 4px;
+  border-color: @ever6;
+  border-radius: 0px;
+}
+
+entry,
+prompt,
+case-indicator {
+  text-font: inherit;
+  text-color: inherit;
+}
+
+prompt {
+  margin: 0px 1em 0em 0em;
+}
+
+listview {
+  padding: 8px;
+  border-radius: 0px;
+  border: 0px 4px 4px 4px;
+  border-color: @ever6;
+  background-color: @transparent;
+  dynamic: false;
+}
+
+element {
+  padding: 5px;
+  vertical-align: 0.5;
+  border-radius: 0px;
+  color: @foreground;
+  text-color: @ever6;
+  background-color: @transparent;
+}
+
+element.normal.active {
+  background-color: @green;
+}
+
+element.normal.urgent {
+  background-color: @reddark;
+}
+
+element.selected.normal {
+  background-color: @ever7;
+  text-color: @ever0;
+}
+
+element.selected.active {
+  background-color: @yellowdark;
+}
+
+element.selected.urgent {
+  background-color: @red;
+}
+
+element.alternate.normal {
+  background-color: @transparent;
+}
+
+element-text,
+element-icon {
+  size: 3ch;
+  margin: 0 10 0 0;
+  vertical-align: 0.5;
+  text-color: @ever6;
+}
+
+button {
+  padding: 6px;
+  color: @foreground;
+  horizontal-align: 0.5;
+  border: 2px 0px 2px 2px;
+  border-radius: 0px;
+  border-color: @foreground;
+}
+
+button.selected.normal {
+  border: 2px 0px 2px 2px;
+  border-color: @foreground;
+}
+

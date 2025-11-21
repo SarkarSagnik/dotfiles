@@ -7,6 +7,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "modules-left": [
+        "niri/workspaces",
         "hyprland/workspaces",
         "mpris"
     ],
@@ -23,6 +24,28 @@
         "network",
         "pulseaudio"
     ],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": " ",
+            "2": " ",
+            "3": " ",
+            "4": " ",
+            "5": " ",
+            "urgent": " ",
+            "active": " ",
+            "default": " "
+        },
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        }
+    },
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -45,6 +68,8 @@
             "4": []
         }
     },
+
+
 
     "group/tray-expander": {
         "orientation": "inherit",
@@ -98,7 +123,6 @@
               "critical": 10
           },
           "tooltip": false,
-          "on-click": "~/.config/hypr/scripts/power-profile",
           "on-double-click": "pkill waybar && waybar"
       },
 
@@ -113,7 +137,7 @@
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 3,
-        "spacing": 1
+        "spacing": 0 
     },
 
     "pulseaudio": {

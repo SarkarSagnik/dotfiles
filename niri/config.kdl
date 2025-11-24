@@ -26,7 +26,7 @@ output "eDP-1" {
 }
 
 layout {
-    gaps 16
+    gaps 12
     center-focused-column "on-overflow"
     always-center-single-column 
 
@@ -67,26 +67,8 @@ cursor {
     hide-after-inactive-ms 10000
 }
 
-spawn-at-startup "waybar"
-spawn-at-startup "swaybg"
-spawn-at-startup "dunst"
 spawn-at-startup "sunsetr"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "sh -c '$HOME/.config/hypr/scripts/next-wallpaper.sh'"
-
-environment {
-    SDL_VIDEODRIVER "wayland"
-    ELECTRON_OZONE_PLATFORM_HINT "wayland"
-    WLR_NO_HARDWARE_CURSORS "1"
-    LIBVA_DRIVER_NAME "nvidia"
-    __GLX_VENDOR_LIBRARY_NAME "nvidia"
-    __NV_PRIME_RENDER_OFFLOAD "1"          // always game on NVIDIA
-    __VK_LAYER_NV_optimus "NVIDIA_only"    // same as above, for Vulkan
-    __GL_SYNC_TO_VBLANK "1"
-    GDK_BACKEND "wayland"
-    QT_QPA_PLATFORM "wayland"
-    CLUTTER_BACKEND "wayland"
-}
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -139,6 +121,11 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
 // Inactive windows dimmed (except browsers & some terminals)
 window-rule {
     match is-active=false
@@ -149,7 +136,7 @@ window-rule {
 }
 window-rule {
     match is-active=true
-    opacity 0.90
+    opacity 0.95
 }
 
 // Steam toast notifications → floating bottom-right
@@ -207,11 +194,9 @@ window-rule {
 // Floating tools
 window-rule {
     match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^steam$"#
     match app-id=r#"^xdg-desktop-portal$"#
     match app-id="zoom"
     match app-id="Calculator"
-    match app-id="heroic"
     match app-id="pavucontrol"
     match app-id="speedcrunch"
     match title="Exo Settings"
@@ -241,7 +226,6 @@ window-rule {
 
 // Terminals – clean borders
 window-rule {
-    match app-id="zen"
     match app-id="ghostty"
     match app-id="kitty"
     draw-border-with-background false
@@ -353,7 +337,7 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     Mod+F { maximize-column; }
-    //Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+F { fullscreen-window; }
     Mod+C { center-column; }
     Mod+V { toggle-window-floating; }
 
@@ -383,7 +367,7 @@ binds {
     Mod+Shift+M { spawn "flatpak" "run" "com.spotify.Client"; }              // Spotify
     Mod+Shift+G { spawn "flatpak" "run" "org.signal.Signal"; }               // Signal
     Mod+Shift+Z { spawn "flatpak" "run" "app.zen_browser.zen"; }             // Zen Browser
-    Mod+Shift+O { spawn "flatpak" "run" "md.obsidian.Obsidian"; }            // Obsidian
+    Mod+Shift+O { spawn "obsidian"; }            // Obsidian
 
     // Quick web shortcuts (URLs must be quoted strings!)
     Mod+Shift+Y { spawn "helium-0.6.7.1-x86_64.AppImage" "https://youtube.com"; }                    // YouTube
@@ -391,5 +375,5 @@ binds {
     Mod+Shift+Alt+X { spawn "helium-0.6.7.1-x86_64.AppImage" "https://x.com/compose/post"; }        // New post on X 
 
     // Optional (uncomment when you actually have DaVinci Resolve installed)
-    // Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
+    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
 }

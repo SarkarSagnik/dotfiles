@@ -1,70 +1,70 @@
-// ~/.config/niri/config.kdl - Fully validated for niri (November 2025)
+// ~/.config/niri/config.kdl - Fully validated for niri (December 2025)
 
 prefer-no-csd
 input {
-    keyboard {
-        xkb {
-            // layout "us"
-            // options "ctrl:nocaps"
-        }
-        numlock
-    }
+    keyboard {
+        xkb {
+            // layout "us"
+            // options "ctrl:nocaps"
+        }
+        numlock
+    }
 
-    touchpad {
-        tap
-        natural-scroll
-    }
+    touchpad {
+        tap
+        natural-scroll
+    }
 
-    // Focus follows mouse 
-    focus-follows-mouse max-scroll-amount="0%"
+    // Focus follows mouse 
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 
 output "eDP-1" {
-    mode "1920x1080@120.030"
-    scale 1.0
-    position x=1280 y=0
+    mode "1920x1080@120.030"
+    scale 1.0
+    position x=1280 y=0
 }
 
 layout {
-    gaps 12
-    center-focused-column "on-overflow"
-    always-center-single-column 
+    gaps 12
+    center-focused-column "on-overflow"
+    always-center-single-column true
 
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-    }
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
 
-    default-column-width {
-        proportion 0.5
-    }
+    default-column-width {
+        proportion 0.5
+    }
 
-    focus-ring {
-        width 2
-        active-color   "#88c0d0ee"
-        inactive-color "#b57614"
-    }
+    focus-ring {
+        width 2
+        active-color   "#88c0d0ee"
+        inactive-color "#b57614"
+    }
 
-    border {
-        off
-    }
+    border {
+        off
+    }
 
-    shadow {
-        on
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
 }
 
 cursor {
-    xcursor-theme "capitaine-cursors"
-    xcursor-size 25
-    hide-when-typing
-    hide-after-inactive-ms 10000
+    xcursor-theme "capitaine-cursors"
+    xcursor-size 25
+    hide-when-typing
+    hide-after-inactive-ms 10000
 }
 
 spawn-at-startup "xwayland-satellite"
@@ -72,164 +72,164 @@ spawn-at-startup "xwayland-satellite"
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 hotkey-overlay {
-    // skip-at-startup
+    // skip-at-startup
 }
 
 
 animations {
-    window-open {
-        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
-    }
-    window-close {
-        spring damping-ratio=1.0 stiffness=700 epsilon=0.1
-    }
-    window-resize {
-        spring damping-ratio=1.0 stiffness=800 epsilon=0.001
-    }
-    window-movement {
-        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
-    }
-    overview-open-close {
-        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
-    }
-    workspace-switch {
-        spring damping-ratio=1.0 stiffness=800 epsilon=0.00001
-    }
-    horizontal-view-movement {
-        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
-    }
+    window-open {
+        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+    }
+    window-close {
+        spring damping-ratio=1.0 stiffness=700 epsilon=0.1
+    }
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+    }
+    window-movement {
+        spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
+    }
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+    }
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.00001
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+    }
 }
 
 // ====================== WINDOW RULES ======================
 
 // WezTerm workaround
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {
-    }
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {
+    }
 }
 
 // Firefox / Helium PiP → floating
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
 }
 window-rule {
-    match app-id=r#"helium$"# title="^Picture-in-Picture$"
-    open-floating true
+    match app-id=r#"helium$"# title="^Picture-in-Picture$"
+    open-floating true
 }
 
 window-rule {
-    match app-id="app.zen_browser.zen" title="^Picture-in-Picture$"
-    open-floating true
+    match app-id=r#"app\.zen_browser\.zen$"# title="^Picture-in-Picture$"
+    open-floating true
 }
 
 
 // Opacity Rules
 window-rule {
-    match is-active=false
-    exclude app-id="brave-browser-nightly"
-    exclude app-id="google-chrome"
-    exclude app-id="Ptyxis"
-    opacity 0.80
+    match is-active=false
+    exclude app-id="brave-browser-nightly"
+    exclude app-id="google-chrome"
+    exclude app-id="Ptyxis"
+    opacity 0.80
 }
 window-rule {
-    match is-active=true
-    opacity 0.95
+    match is-active=true
+    opacity 0.95
 }
 
 // Steam toast notifications → floating bottom-right
 window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    open-floating true
-    default-floating-position x=10 y=10 relative-to="bottom-right"
+    match app-id=r#"steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    open-floating true
+    default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
 // Open Steam and browsers and its games maximized
 window-rule {
-    match app-id=r#"steam$"#
-    match app-id="brave$"
-    match app-id="zen$"
-    match app-id="helium$"
+    match app-id=r#"steam$"#
+    match app-id=r#"brave$"#
+    match app-id=r#"zen$"#
+    match app-id=r#"helium$"#
 
-    open-maximized true
+    open-maximized true
 }
 
 // GNOME apps – proper border drawing
 window-rule {
-    match app-id=r#"^org\.gnome\."#
-    draw-border-with-background false
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
 }
 
 // Centered utilities (tiled, 50% width)
 window-rule {
-    match app-id="gnome-control-center"
-    match app-id="pavucontrol"
-    match app-id="nm-connection-editor"
-    default-column-width {
-        proportion 0.5
-    }
-    open-floating false
+    match app-id="gnome-control-center"
+    match app-id="pavucontrol"
+    match app-id="nm-connection-editor"
+    default-column-width {
+        proportion 0.5
+    }
+    open-floating false
 }
 
 // Wide apps (80% width)
 window-rule {
-    match app-id="Spotify"
-    match app-id="vesktop"
-    match app-id="Code"
-    match app-id="zed"
-    match app-id="libreoffice"
-    default-column-width {
-        proportion 0.8
-    }
+    match app-id="Spotify"
+    match app-id="vesktop"
+    match app-id="Code"
+    match app-id="zed"
+    match app-id="libreoffice"
+    default-column-width {
+        proportion 0.8
+    }
 }
 
 // Media apps → "media" workspace, focused
 window-rule {
-    match app-id="Spotify"
-    match app-id="vesktop"
-    open-on-workspace "media"
-    open-focused true
+    match app-id="Spotify"
+    match app-id="vesktop"
+    open-on-workspace "media"
+    open-focused true
 }
 
 // Floating tools
 window-rule {
-    match app-id=r#"^blueman-manager$"#
-    match app-id=r#"^xdg-desktop-portal$"#
-    match app-id="zoom"
-    match app-id="Calculator"
-    match app-id="pavucontrol"
-    match app-id="speedcrunch"
-    match title="Exo Settings"
-    open-floating true
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    match app-id="zoom"
+    match app-id="Calculator"
+    match app-id="pavucontrol"
+    match app-id="speedcrunch"
+    match title="Exo Settings"
+    open-floating true
 }
 
 // TUIs
 window-rule {
-    match title="tui"
-    open-floating true
-    default-column-width {
-        fixed 800
-    }
-    default-window-height {
-        fixed 800
-    }
+    match title="tui"
+    open-floating true
+    default-column-width {
+        fixed 800
+    }
+    default-window-height {
+        fixed 800
+    }
 }
 window-rule {
-    match title="code-editor-tui"
-    default-column-width {
-        fixed 700
-    }
-    default-window-height {
-        fixed 400
-    }
+    match title="code-editor-tui"
+    default-column-width {
+        fixed 700
+    }
+    default-window-height {
+        fixed 400
+    }
 }
 
 // Terminals – clean borders
 window-rule {
-    match app-id="ghostty"
-    match app-id="kitty"
-    draw-border-with-background false
+    match app-id="ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
 }
 
 
@@ -237,146 +237,146 @@ window-rule {
 // ====================== KEYBINDS ======================
 
 binds {
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "ghostty"; }
-    Mod+D { spawn "wofi" "--show" "drun"; }
-    Super+Alt+L { spawn "hyprlock"; }
+    Mod+Return { spawn "ghostty"; }
+    Mod+D { spawn "wofi" "--show" "drun"; }
+    Super+Alt+L { spawn "hyprlock"; }
 
-    Mod+Ctrl+W { spawn-sh "sh -c '$HOME/.config/hypr/scripts/next-wallpaper.sh'"; }
-
-
-    // Brightness and Volume controls
-
-    //Volume Up
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "~/.config/hypr/scripts/volnoti.sh" "up";
-    }
-
-    //Volume Down
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "~/.config/hypr/scripts/volnoti.sh" "down";
-    }
-
-    //Volume Mute
-    XF86AudioMute allow-when-locked=true {
-        spawn "~/.config/hypr/scripts/volnoti.sh" "mute";
-    }
-
-    //Mic Mute
-    XF86AudioMicMute allow-when-locked=true {
-        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-    }
+    Mod+Ctrl+W { spawn-sh "sh -c '$HOME/.config/hypr/scripts/next-wallpaper.sh'"; }
 
 
-    //Brightness Up
-    XF86MonBrightnessUp allow-when-locked=true {
-        spawn "~/.config/hypr/scripts/brinoti.sh" "up";
-    }
+    // Brightness and Volume controls
 
-    //Brightness Down
-    XF86MonBrightnessDown allow-when-locked=true {
-        spawn "~/.config/hypr/scripts/brinoti.sh" "down";
-    }
+    //Volume Up
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "~/.config/hypr/scripts/volnoti.sh" "up";
+    }
 
+    //Volume Down
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "~/.config/hypr/scripts/volnoti.sh" "down";
+    }
 
-    Mod+O repeat=false { toggle-overview; }
-    Mod+Q repeat=false { close-window; }
+    //Volume Mute
+    XF86AudioMute allow-when-locked=true {
+        spawn "~/.config/hypr/scripts/volnoti.sh" "mute";
+    }
 
-    Mod+Left { focus-column-left; }
-    Mod+H { focus-column-left; }
-    Mod+Right { focus-column-right; }
-    Mod+L { focus-column-right; }
-    Mod+Up { focus-window-up; }
-    Mod+K { focus-window-up; }
-    Mod+Down { focus-window-down; }
-    Mod+J { focus-window-down; }
-
-    Mod+Ctrl+Left { move-column-left; }
-    Mod+Ctrl+H { move-column-left; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+L { move-column-right; }
-    Mod+Ctrl+Up { move-window-up; }
-    Mod+Ctrl+K { move-window-up; }
-    Mod+Ctrl+Down { move-window-down; }
-    Mod+Ctrl+J { move-window-down; }
-
-    Mod+Page_Up { focus-workspace-up; }
-    Mod+I { focus-workspace-up; }
-    Mod+Page_Down { focus-workspace-down; }
-    Mod+U { focus-workspace-down; }
-
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
-
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
-
-    Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
-
-    Mod+F { maximize-column; }
-    Mod+Alt+F { fullscreen-window; }
-    Mod+C { center-column; }
-    Mod+V { toggle-window-floating; }
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
-    Ctrl+Alt+Delete { quit; }
-    Mod+Shift+P { power-off-monitors; }
-    Mod+Escape { spawn-sh "sh -c '$HOME/.config/niri/power-menu'"; }
+    //Mic Mute
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+    }
 
 
-    // Additionals 
+    //Brightness Up
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "~/.config/hypr/scripts/brinoti.sh" "up";
+    }
 
-    // Core apps
-    Mod+Shift+F { spawn "nautilus"; }
-    Mod+Shift+B { spawn "helium-0.7.3.1-x86_64.AppImage"; }
-    Mod+B { spawn "flatpak" "run" "com.brave.Browser"; }
-    Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
+    //Brightness Down
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "~/.config/hypr/scripts/brinoti.sh" "down";
+    }
 
-    // System monitors & tools
-    Mod+Shift+T { spawn "ghostty" "-e" "btop"; }
-    Mod+Shift+D { spawn "ghostty" "-e" "lazydocker"; }
 
-    // Flatpak / frequently used apps
-    Mod+Shift+M { spawn "flatpak" "run" "com.spotify.Client"; }
-    Mod+Shift+G { spawn "flatpak" "run" "org.signal.Signal"; }
-    Mod+Shift+Z { spawn "flatpak" "run" "app.zen_browser.zen"; }
-    Mod+Shift+O { spawn "obsidian"; }
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Q repeat=false { close-window; }
 
-    // Quick web shortcuts (URLs must be quoted strings!)
-    // Creative & Web Apps
-    Mod+Shift+Y { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://youtube.com"; }
-    Mod+Alt+M { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://music.youtube.com"; }
-    Mod+Shift+W { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
-    Mod+Shift+X { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com"; }
-    Mod+Shift+Alt+X { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
-    Mod+Alt+N { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.netflix.com/browse"; }
-    Mod+Shift+Alt+P { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.primevideo.com/region/eu/storefront?ref_=atv_pr_sw_sc"; }
-    Mod+Shift+Alt+F { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.fancode.com"; }
-    Mod+Shift+Alt+H { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.hotstar.com/in/home"; }
+    Mod+Left { focus-column-left; }
+    Mod+H { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+L { focus-column-right; }
+    Mod+Up { focus-window-up; }
+    Mod+K { focus-window-up; }
+    Mod+Down { focus-window-down; }
+    Mod+J { focus-window-down; }
 
-    // Optional (uncomment when you actually have DaVinci Resolve installed)
-    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
+    Mod+Ctrl+Left { move-column-left; }
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+Down { move-window-down; }
+    Mod+Ctrl+J { move-window-down; }
+
+    Mod+Page_Up { focus-workspace-up; }
+    Mod+I { focus-workspace-up; }
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+U { focus-workspace-down; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+F { maximize-column; }
+    Mod+Alt+F { fullscreen-window; }
+    Mod+C { center-column; }
+    Mod+V { toggle-window-floating; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Escape { spawn-sh "sh -c '$HOME/.config/niri/power-menu'"; }
+
+
+    // Additionals 
+
+    // Core apps
+    Mod+Shift+F { spawn "nautilus"; }
+    Mod+Shift+B { spawn "helium-0.7.3.1-x86_64.AppImage"; }
+    Mod+B { spawn "flatpak" "run" "com.brave.Browser"; }
+    Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
+
+    // System monitors & tools
+    Mod+Shift+T { spawn "ghostty" "-e" "btop"; }
+    Mod+Shift+D { spawn "ghostty" "-e" "lazydocker"; }
+
+    // Flatpak / frequently used apps
+    Mod+Shift+M { spawn "flatpak" "run" "com.spotify.Client"; }
+    Mod+Shift+G { spawn "flatpak" "run" "org.signal.Signal"; }
+    Mod+Shift+Z { spawn "flatpak" "run" "app.zen_browser.zen"; }
+    Mod+Shift+O { spawn "obsidian"; }
+
+    // Quick web shortcuts (URLs must be quoted strings!)
+    // Creative & Web Apps
+    Mod+Shift+Y { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://youtube.com"; }
+    Mod+Alt+M { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://music.youtube.com"; }
+    Mod+Shift+W { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
+    Mod+Shift+X { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com"; }
+    Mod+Shift+Alt+X { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
+    Mod+Alt+N { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.netflix.com/browse"; }
+    Mod+Shift+Alt+P { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.primevideo.com/region/eu/storefront?ref_=atv_pr_sw_sc"; }
+    Mod+Shift+Alt+F { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.fancode.com"; }
+    Mod+Shift+Alt+H { spawn "helium-0.7.3.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.hotstar.com/in/home"; }
+
+    // Optional (uncomment when you actually have DaVinci Resolve installed)
+    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
 }

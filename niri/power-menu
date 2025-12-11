@@ -1,0 +1,41 @@
+#!/bin/bash
+# Simple Power & Night Light menu using Wofi
+
+# Path to your custom nightlight script
+NIGHTLIGHT_SCRIPT="$HOME/.config/niri/nightlight"
+
+# Menu options
+options="󰌾  Toggle Night Light
+  Lock
+󰤄  Suspend
+󰜉  Reboot
+󰐥  Power Off
+  Cancel"
+
+# Show menu
+choice=$(echo -e "$options" | wofi --show dmenu \
+  --prompt "Power Menu" \
+  --width 420 \
+  --height 340 \
+  --location center \
+  --hide-scroll \
+  --allow-markup \
+  --style-str '
+    window {
+        font-size: 18px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    entry, text {
+        padding: 10px;
+    }
+  ')
+
+case "$choice" in
+    *"Night Light"*) "$NIGHTLIGHT_SCRIPT" ;;
+    *Lock*) hyprlock ;;
+    *Suspend*) systemctl suspend ;;
+    *Reboot*) systemctl reboot ;;
+    *Power*) systemctl poweroff ;;
+    *) exit 0 ;;
+esac

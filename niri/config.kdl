@@ -67,7 +67,6 @@ cursor {
     hide-after-inactive-ms 10000
 }
 
-spawn-at-startup "sunsetr"
 spawn-at-startup "xwayland-satellite"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

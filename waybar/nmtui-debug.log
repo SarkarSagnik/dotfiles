@@ -1,0 +1,33 @@
+debug 2026/01/05 14:37:23 No cache file found: open /tmp/nmtui-cache.json: no such file or directory
+debug 2026/01/05 14:37:27 No cache file found: open /tmp/nmtui-cache.json: no such file or directory
+debug 2026/01/05 14:37:44 No cache file found: open /tmp/nmtui-cache.json: no such file or directory
+debug 2026/01/05 14:39:15 No cache file found: open /tmp/nmtui-cache.json: no such file or directory
+debug 2026/01/05 14:39:15 Fetching known networks...
+debug 2026/01/05 14:39:15 Getting Wi-Fi status...
+debug 2026/01/05 14:39:15 Fetching Wi-Fi networks (rescan: true)...
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline connection show --order name]
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline device wifi list --rescan yes]
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli radio wifi]
+debug 2026/01/05 14:39:15 parseNmcliMultilineOutput: Parsed 8 records from 32 lines
+debug 2026/01/05 14:39:15 Got 8 total profiles
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline connection show --order name --active]
+debug 2026/01/05 14:39:15 Wi-Fi status: enabled (enabled: true)
+debug 2026/01/05 14:39:15 Fetching Wi-Fi networks (rescan: true)...
+debug 2026/01/05 14:39:15 Fetching known networks...
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline device wifi list --rescan yes]
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline connection show --order name]
+debug 2026/01/05 14:39:15 parseNmcliMultilineOutput: Parsed 3 records from 12 lines
+debug 2026/01/05 14:39:15 parseNmcliMultilineOutput: Parsed 8 records from 32 lines
+debug 2026/01/05 14:39:15 Found active Wi-Fi: JioFiber-Sagnik5GH (device: wlo1)
+debug 2026/01/05 14:39:15 Got 8 total profiles
+debug 2026/01/05 14:39:15 Found 4 known Wi-Fi profiles, active: true
+debug 2026/01/05 14:39:15 Executing nmcli command: [nmcli -m multiline connection show --order name --active]
+debug 2026/01/05 14:39:15 parseNmcliMultilineOutput: Parsed 3 records from 12 lines
+debug 2026/01/05 14:39:15 Found active Wi-Fi: JioFiber-Sagnik5GH (device: wlo1)
+debug 2026/01/05 14:39:15 Found 4 known Wi-Fi profiles, active: true
+debug 2026/01/05 14:39:18 parseNmcliMultilineOutput: Parsed 9 records from 81 lines
+debug 2026/01/05 14:39:18 Fetched 9 Wi-Fi networks
+debug 2026/01/05 14:39:18 parseNmcliMultilineOutput: Parsed 9 records from 81 lines
+debug 2026/01/05 14:39:18 Fetched 9 Wi-Fi networks
+debug 2026/01/05 14:39:18 Processing 9 scanned APs, 4 known profiles
+debug 2026/01/05 14:39:18 Processing 9 scanned APs, 4 known profiles

@@ -19,15 +19,24 @@ vol=$(get_volume)
 muted=$(get_mute)
 
 if [ "$muted" = "true" ]; then
-    text="Volume: Muted"
+    icon="󰝟"
+    text="Muted"
     value=0
+elif [ "$vol" -le 33 ]; then
+    icon="󰕿"
+    text="${vol}%"
+    value=$vol
+elif [ "$vol" -le 66 ]; then
+    icon="󰖀"
+    text="${vol}%"
+    value=$vol
 else
-    text="Volume: ${vol}%"
+    icon="󰕾"
+    text="${vol}%"
     value=$vol
 fi
 
-dunstify -a "Volume:" -r 2593 -u low "$text" \
+dunstify -a "Volume" -r 2593 -u low "$icon $text" \
     -h int:value:"$value" \
-    -h string:markup:1 \
     -h string:x-dunst-stack-tag:volume
 

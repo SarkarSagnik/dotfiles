@@ -13,12 +13,17 @@ brightness=$(brightnessctl get)
 max_brightness=$(brightnessctl max)
 percent=$(( 100 * brightness / max_brightness ))
 
+if [ "$percent" -le 33 ]; then
+    icon="󰃞"
+elif [ "$percent" -le 66 ]; then
+    icon="󰃟"
+else
+    icon="󰃠"
+fi
 
-
-text="${icon} Brightness: ${percent}%"
+text="$icon ${percent}%"
 
 dunstify -a "Brightness" -r 2594 -u low "$text" \
     -h int:value:"$percent" \
-    -h string:markup:1 \
     -h string:x-dunst-stack-tag:brightness
 

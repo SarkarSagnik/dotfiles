@@ -21,7 +21,7 @@ else
     icon="󰃠"
 fi
 
-text="$icon ${percent}%"
+text="$icon  ${percent}%"
 
 dunstify -a "Brightness" -r 2594 -u low "$text" \
     -h int:value:"$percent" \

@@ -1,0 +1,86 @@
+#####################
+### LOOK AND FEEL ###
+#####################
+
+general {
+    gaps_in = 5
+    gaps_out = 15
+    border_size = 2
+    col.active_border = rgba(d79921ee) rgba(ebdbb2ee) 45deg
+    col.inactive_border = rgba(595959aa)
+    resize_on_border = true
+    allow_tearing = true
+    layout = dwindle
+}
+
+decoration {
+    rounding = false
+    active_opacity = 0.95
+    inactive_opacity = 0.85
+
+    shadow {
+        enabled = false
+        range = 4
+        render_power = 3
+        color = rgba(1a1a1aee)
+    }
+
+    blur {
+        enabled = true
+        size = 3
+        passes = 1
+        vibrancy = 0.17
+    }
+}
+
+animations {
+    enabled = yes
+
+    # ------------------------
+    # Bezier curves
+    # ------------------------
+    bezier = easeOutExpo, 0.16, 1, 0.3, 1
+    bezier = easeInExpo,  0.7,  0, 0.84, 0
+    bezier = smoothFade,  0.4,  0, 0.2,  1
+
+    # ------------------------
+    # Global
+    # animation = <name>, <enabled>, <duration>, <curve>
+    # ------------------------
+    animation = global, 1, 8, default
+
+    # Border animations
+    animation = border, 1, 10, default
+
+    # Windows (move/resize)
+    animation = windows, 1, 6, easeOutExpo
+
+    # Window open animation
+    animation = windowsIn, 1, 6, easeOutExpo, slide, fade
+
+    # Window close animation
+    animation = windowsOut, 1, 5, easeInExpo, slide, fade
+
+    # Fades
+    animation = fadeIn,  1, 4, smoothFade
+    animation = fadeOut, 1, 4, smoothFade
+    animation = fade,    1, 5, smoothFade
+
+    # Layer surfaces (waybar/rofi/etc.)
+    animation = layers,    1, 6, easeOutExpo, slide
+    animation = layersIn,  1, 5, easeOutExpo, slide
+    animation = layersOut, 1, 4, easeInExpo,  slide
+
+    # Workspaces
+    animation = workspaces, 1, 6, easeOutExpo, fade
+}
+
+
+dwindle {
+    pseudotile = true
+    preserve_split = true
+}
+
+master {
+    new_status = master
+}

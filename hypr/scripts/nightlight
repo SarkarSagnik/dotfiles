@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Temperature for night mode
-TEMP=5000
+TEMP=4500
 
 # Check if hyprsunset is already running
 if pgrep -x "hyprsunset" >/dev/null; then

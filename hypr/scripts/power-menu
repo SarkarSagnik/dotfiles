@@ -13,7 +13,7 @@ options="󰌾  Toggle Night Light
   Cancel"
 
 # Show menu
-choice=$(echo -e "$options" | rofi -dmenu \
+choice=$(echo -e "$options" | wofi --show dmenu \
   --prompt "Power Menu" \
   --width 420 \
   --height 340 \

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 WALLPAPER_DIR="$HOME/.config/WALLS"
-if ! command -v swaybg &> /dev/null; then echo "swaybg not found"; exit 1; fi
+if ! command -v swww &> /dev/null; then echo "swww not found"; exit 1; fi
 if ! command -v find &> /dev/null; then echo "find not found"; exit 1; fi
 NOTIFY=false
 if command -v notify-send &> /dev/null; then NOTIFY=true; fi
@@ -26,14 +26,14 @@ if [ ! -f "$CACHE_FILE" ]; then
 fi
 
 INDEX=$(cat "$CACHE_FILE")
+PREV_WALL="${WALLPAPERS[$INDEX]}"
 NEXT=$(( (INDEX + 1) % TOTAL ))
 echo "$NEXT" > "$CACHE_FILE"
 
 CURRENT_WALL="${WALLPAPERS[$NEXT]}"
 
-# Kill any running swaybg and set new wallpaper
-pkill swaybg 2>/dev/null
-swaybg -i "$CURRENT_WALL" -m fill &
+# Set new wallpaper with swww
+swww img "$CURRENT_WALL" --resize crop --transition-duration 0.5 --transition-type fade
 if $NOTIFY; then notify-send "Wallpaper Changed" "Set to $(basename "$CURRENT_WALL")"; fi
 
 # ------------------------------------------------------------------

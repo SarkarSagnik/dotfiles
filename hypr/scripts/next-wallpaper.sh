@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 WALLPAPER_DIR="$HOME/.config/WALLS"
+if ! command -v swaybg &> /dev/null; then echo "swaybg not found"; exit 1; fi
+if ! command -v find &> /dev/null; then echo "find not found"; exit 1; fi
+NOTIFY=false
+if command -v notify-send &> /dev/null; then NOTIFY=true; fi
 CACHE_FILE="$HOME/.config/.current_wallpaper"
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 # --- NEW: Define the path to your Rofi theme/config ---
@@ -29,6 +34,7 @@ CURRENT_WALL="${WALLPAPERS[$NEXT]}"
 # Kill any running swaybg and set new wallpaper
 pkill swaybg 2>/dev/null
 swaybg -i "$CURRENT_WALL" -m fill &
+if $NOTIFY; then notify-send "Wallpaper Changed" "Set to $(basename "$CURRENT_WALL")"; fi
 
 # ------------------------------------------------------------------
 # --- Update 1: Background path in Hyprlock ---
@@ -40,7 +46,9 @@ if [ -f "$HYPRLOCK_CONF" ]; then
     in_bg && /^ *path *=/ { sub(/=.*/, "= " newpath) }
     in_bg && /^\}/ { in_bg = 0 }
     { print }
-    ' "$HYPRLOCK_CONF" > "$HYPRLOCK_CONF.tmp" && mv "$HYPRLOCK_CONF.tmp" "$HYPRLOCK_CONF"
+     ' "$HYPRLOCK_CONF" > "$HYPRLOCK_CONF.tmp" && mv "$HYPRLOCK_CONF.tmp" "$HYPRLOCK_CONF"
+else
+    echo "Warning: HYPRLOCK_CONF not found at $HYPRLOCK_CONF"
 fi
 
 
@@ -49,7 +57,7 @@ fi
 # ------------------------------------------------------------------
 if [ -f "$ROFI_CONF" ]; then
     # We need to escape the path for use in the Rofi URL string
-    ESCAPED_WALLPAPER_PATH="url(\"$(echo "$CURRENT_WALL" | sed 's/[&/\]/\\&/g')\");"
+    ESCAPED_WALLPAPER_PATH="url(\"$(echo "$CURRENT_WALL" | sed 's/[\/&]/\\&/g')\");"
     
     awk -v newurl="$ESCAPED_WALLPAPER_PATH" '
     BEGIN { in_imagebox = 0 }
@@ -70,4 +78,6 @@ if [ -f "$ROFI_CONF" ]; then
     # Print all other lines
     { print }
     ' "$ROFI_CONF" > "$ROFI_CONF.tmp" && mv "$ROFI_CONF.tmp" "$ROFI_CONF"
+else
+    echo "Warning: ROFI_CONF not found at $ROFI_CONF"
 fi

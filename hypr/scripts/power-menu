@@ -1,8 +1,14 @@
 #!/bin/bash
+set -euo pipefail
+
 # Simple Power & Night Light menu using Wofi
+if ! command -v wofi &> /dev/null; then echo "wofi not found"; exit 1; fi
+if ! command -v hyprlock &> /dev/null; then echo "hyprlock not found"; exit 1; fi
+if ! command -v systemctl &> /dev/null; then echo "systemctl not found"; exit 1; fi
 
 # Path to your custom nightlight script
 NIGHTLIGHT_SCRIPT="$HOME/.config/hypr/scripts/nightlight"
+if [ ! -x "$NIGHTLIGHT_SCRIPT" ]; then echo "NIGHTLIGHT_SCRIPT not executable"; exit 1; fi
 
 # Menu options
 options="󰌾  Toggle Night Light
@@ -34,8 +40,14 @@ choice=$(echo -e "$options" | wofi --show dmenu \
 case "$choice" in
     *"Night Light"*) "$NIGHTLIGHT_SCRIPT" ;;
     *Lock*) hyprlock ;;
-    *Suspend*) systemctl suspend ;;
-    *Reboot*) systemctl reboot ;;
-    *Power*) systemctl poweroff ;;
+    *Suspend*)
+        confirm=$(echo -e "Yes\nNo" | wofi --dmenu -p "Confirm suspend?" --width 200 --height 100)
+        if [ "$confirm" = "Yes" ]; then systemctl suspend; fi ;;
+    *Reboot*)
+        confirm=$(echo -e "Yes\nNo" | wofi --dmenu -p "Confirm reboot?" --width 200 --height 100)
+        if [ "$confirm" = "Yes" ]; then systemctl reboot; fi ;;
+    *Power*)
+        confirm=$(echo -e "Yes\nNo" | wofi --dmenu -p "Confirm power off?" --width 200 --height 100)
+        if [ "$confirm" = "Yes" ]; then systemctl poweroff; fi ;;
     *) exit 0 ;;
 esac

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 PROFILE_SETTER="$HOME/.config/hypr/scripts/set_power_profile.sh"
+if ! command -v powerprofilesctl &> /dev/null; then echo "powerprofilesctl not found"; exit 1; fi
+if ! command -v wofi &> /dev/null; then echo "wofi not found"; exit 1; fi
+if [ ! -x "$PROFILE_SETTER" ]; then echo "PROFILE_SETTER script not executable"; exit 1; fi
 # Define the exact profiles we want to show
 DESIRED_PROFILES="performance\nbalanced\npower-saver"
 

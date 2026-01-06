@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Dependencies: brightnessctl, dunstify
+if ! command -v brightnessctl &> /dev/null; then echo "brightnessctl not found"; exit 1; fi
+if ! command -v dunstify &> /dev/null; then echo "dunstify not found"; exit 1; fi
 
 case "$1" in
     up)

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Temperature for night mode
 TEMP=4500
+if ! command -v hyprsunset &> /dev/null; then echo "hyprsunset not found"; exit 1; fi
+if ! command -v notify-send &> /dev/null; then echo "notify-send not found"; exit 1; fi
 
 # Check if hyprsunset is already running
 if pgrep -x "hyprsunset" >/dev/null; then

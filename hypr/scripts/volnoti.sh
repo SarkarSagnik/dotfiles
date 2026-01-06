@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 # Volume notification with native Dunst progress bar and volume on same line
+if ! command -v pamixer &> /dev/null; then echo "pamixer not found"; exit 1; fi
 
 get_volume() {
     pamixer --get-volume

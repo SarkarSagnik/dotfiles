@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Check if the powerprofilesctl utility exists
 if ! command -v powerprofilesctl &> /dev/null

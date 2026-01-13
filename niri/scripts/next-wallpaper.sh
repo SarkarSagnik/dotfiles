@@ -4,6 +4,7 @@ set -euo pipefail
 WALLPAPER_DIR="$HOME/.config/WALLS"
 if ! command -v swww &> /dev/null; then echo "swww not found"; exit 1; fi
 if ! command -v find &> /dev/null; then echo "find not found"; exit 1; fi
+if ! command -v convert &> /dev/null; then echo "convert (ImageMagick) not found"; exit 1; fi
 NOTIFY=false
 if command -v notify-send &> /dev/null; then NOTIFY=true; fi
 CACHE_FILE="$HOME/.config/niri/.current_wallpaper"
@@ -29,6 +30,10 @@ echo "$NEXT" > "$CACHE_FILE"
 
 CURRENT_WALL="${WALLPAPERS[$NEXT]}"
 
+# Create blurred version for gtklock
+BLURRED_WALL="$HOME/.config/niri/blurred_wallpaper.jpg"
+convert "$CURRENT_WALL" -resize 1920x1080^ -gravity center -extent 1920x1080 -blur 0x10 "$BLURRED_WALL"
+
 # Set new wallpaper with swww
 swww img "$CURRENT_WALL" --resize crop --transition-duration 0.5 --transition-type fade
 if $NOTIFY; then notify-send "Wallpaper Changed" "Set to $(basename "$CURRENT_WALL")"; fi
@@ -42,7 +47,9 @@ ln -sf "$CURRENT_WALL" "$CURRENT_WALL_LINK"
 # ------------------------------------------------------------------
 GTKLOCK_CONF="$HOME/.config/gtklock/config.ini"
 if [ -f "$GTKLOCK_CONF" ]; then
-    sed -i "s|^background=.*|background=$CURRENT_WALL|" "$GTKLOCK_CONF"
+    sed -i "s|^background=.*|background=$BLURRED_WALL|" "$GTKLOCK_CONF"
+    # Disable gtklock's blur since we're using pre-blurred image
+    sed -i "s|^blur=.*|blur=0|" "$GTKLOCK_CONF"
 else
     echo "Warning: GTKLOCK_CONF not found at $GTKLOCK_CONF"
 fi

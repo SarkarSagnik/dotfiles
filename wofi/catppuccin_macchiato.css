@@ -1,0 +1,17 @@
+/* catppuccin_macchiato.css */
+
+@define-color bg0        #24273a;  /* Crust */
+@define-color bg1        #1e2030;  /* Mantle */
+@define-color bg2        #181926;  /* Base */
+@define-color bg3        #363a4f;  /* Surface0 */
+@define-color fg         #cad3f5;  /* Text */
+@define-color fg_highlight #f4dbd6;  /* Subtext1 or brighter variant */
+@define-color green      #a6da95;  /* Green */
+@define-color dark_green #8bd5ca;  /* Teal (darker teal-like) */
+@define-color blue       #8aadf4;  /* Blue */
+@define-color sky        #7dc4e4;  /* Sky (lighter blue variant) */
+@define-color aqua       #8bd5ca;  /* Teal (aqua-like) */
+@define-color yellow     #eed49f;  /* Yellow */
+@define-color orange     #f5a97f;  /* Peach (orange-like) */
+@define-color red        #ed8796;  /* Red */
+@define-color purple     #c6a0f6;  /* Lavender (purple-like) */

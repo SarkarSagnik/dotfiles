@@ -1,6 +1,6 @@
 /* === Wofi Everforest Theme === */
 /* File: ~/.config/wofi/style.css */
-@import '/home/yhwach/.config/wofi/everforest.css';
+@import '/home/yhwach/.config/wofi/catppuccin_macchiato.css';
 
 * {
     font-family: 'CaskaydiaMono Nerd Font';
@@ -68,15 +68,5 @@ window {
 
 #entry:selected #text {
     color: @fg_highlight;
-}
-
-/* === Icons === */
-image {
-    margin-left: 10px;
-}
-
-/* Hide right-side input icon */
-#input > image.right {
-    -gtk-icon-transform: scaleX(0);
 }
 

@@ -70,6 +70,9 @@ cursor {
 }
 
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "dunst"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -160,6 +163,7 @@ window-rule {
     match app-id=r#"brave$"#
     match app-id=r#"zen$"#
     match app-id=r#"helium$"#
+    match app-id=r#"ghostty"#
 
     open-maximized true
 }
@@ -284,7 +288,9 @@ binds {
         spawn "~/.config/niri/scripts/brinoti.sh" "down";
     }
 
-    
+    // Change wallpaper
+    Mod+Alt+Space { spawn "~/.config/niri/scripts/next-wallpaper.sh"; }
+
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
 
@@ -343,17 +349,19 @@ binds {
     Mod+C { center-column; }
     Mod+V { toggle-window-floating; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Mod+S { screenshot; }
+    Mod+Alt+S { screenshot-screen; }
+    Mod+Shift+S { screenshot-window; }
 
     Ctrl+Alt+Delete { quit; }
+    Mod+Escape repeat=false { spawn "~/.config/niri/scripts/power-menu.sh"; }
     Mod+Shift+P { power-off-monitors; }
+    Mod+N { spawn "dunstctl" "set-paused" "toggle"; }
 
 
     // Core apps
     Mod+Shift+F { spawn "nautilus"; }
-    Mod+Shift+B { spawn "helium-0.7.10.1-x86_64.AppImage"; }
+    Mod+Shift+B { spawn "helium-browser"; }
     Mod+B { spawn "brave-browser-nightly"; }
     Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
 
@@ -369,16 +377,13 @@ binds {
 
     // Quick web shortcuts (URLs must be quoted strings!)
     // Creative & Web Apps
-    Mod+Shift+Y { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://youtube.com"; }
-    Mod+Alt+M { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://music.youtube.com"; }
-    Mod+Shift+W { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
-    Mod+Shift+X { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com"; }
-    Mod+Shift+Alt+X { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
-    Mod+Alt+N { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.netflix.com/browse"; }
-    Mod+Shift+Alt+P { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.primevideo.com/region/eu/storefront?ref_=atv_pr_sw_sc"; }
-    Mod+Shift+Alt+F { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.fancode.com"; }
-    Mod+Shift+Alt+H { spawn "helium-0.7.10.1-x86_64.AppImage" "--profile-directory=Default" "--app=https://www.hotstar.com/in/home"; }
+    Mod+Shift+Y { spawn "helium-browser" "--profile-directory=Default" "--app=https://youtube.com"; }
+        Mod+Alt+M { spawn "helium-browser" "--profile-directory=Default" "--app=https://music.youtube.com"; }
+            Mod+Shift+W { spawn "helium-browser" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
+                Mod+Shift+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com"; }
+                    Mod+Shift+Alt+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
+                        Mod+Shift+Alt+F { spawn "helium-browser" "--profile-directory=Default" "--app=https://www.fancode.com"; }
 
-    // Optional (uncomment when you actually have DaVinci Resolve installed)
-    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
-}
+                            // Optional (uncomment when you actually have DaVinci Resolve installed)
+                            //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
+                        }

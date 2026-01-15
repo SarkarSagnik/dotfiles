@@ -19,7 +19,6 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-include "dms/cursor.kdl"
 
 output "eDP-1" {
     mode "1920x1080@144.0"
@@ -28,7 +27,7 @@ output "eDP-1" {
 }
 
 layout {
-    gaps 15
+    gaps 10
     center-focused-column "on-overflow"
     always-center-single-column true
 
@@ -63,7 +62,15 @@ layout {
     }
 }
 
+cursor {
+    xcursor-theme "capitaine-cursors"
+    xcursor-size 25
+    hide-when-typing
+    hide-after-inactive-ms 10000
+}
+
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "swww-daemon"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -98,10 +105,11 @@ animations {
 
 // ====================== WINDOW RULES ======================
 
-// Rounded corners for all windows
+// WezTerm workaround
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {
+    }
 }
 
 // Firefox / Helium PiP → floating
@@ -124,7 +132,6 @@ window-rule {
 window-rule {
     match is-active=false
     exclude app-id="brave-browser-nightly"
-    exclude app-id="helium-browser"
     exclude app-id="google-chrome"
     exclude app-id="Ptyxis"
     opacity 0.80
@@ -141,11 +148,21 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
+// Gaming optimizations
+window-rule {
+    match app-id=r#"steam$"#
+    match app-id=r#"lutris$"#
+    match app-id=r#"heroic$"#
+    open-fullscreen true
+}
+
 // Open browsers maximized
 window-rule {
     match app-id=r#"brave$"#
     match app-id=r#"zen$"#
     match app-id=r#"helium$"#
+    match app-id=r#"ghostty"#
+
     open-maximized true
 }
 
@@ -227,6 +244,7 @@ window-rule {
 }
 
 
+
 // ====================== KEYBINDS ======================
 
 binds {
@@ -239,17 +257,17 @@ binds {
 
     //Volume Up
     XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
+        spawn "~/.config/niri/scripts/volnoti.sh" "up";
     }
 
     //Volume Down
     XF86AudioLowerVolume allow-when-locked=true {
-        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
+        spawn "~/.config/niri/scripts/volnoti.sh" "down";
     }
 
     //Volume Mute
     XF86AudioMute allow-when-locked=true {
-        spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+        spawn "~/.config/niri/scripts/volnoti.sh" "mute";
     }
 
     //Mic Mute
@@ -260,14 +278,16 @@ binds {
 
     //Brightness Up
     XF86MonBrightnessUp allow-when-locked=true {
-        spawn "brightnessctl" "set" "+10%";
+        spawn "~/.config/niri/scripts/brinoti.sh" "up";
     }
 
     //Brightness Down
     XF86MonBrightnessDown allow-when-locked=true {
-        spawn "brightnessctl" "set" "10%-";
+        spawn "~/.config/niri/scripts/brinoti.sh" "down";
     }
 
+    // Change wallpaper
+    Mod+Alt+Space { spawn "~/.config/niri/scripts/next-wallpaper.sh"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
@@ -333,11 +353,13 @@ binds {
 
     Ctrl+Alt+Delete { quit; }
     Mod+Shift+P { power-off-monitors; }
+    Mod+N { spawn "dunstctl" "set-paused" "toggle"; }
 
 
     // Core apps
     Mod+Shift+F { spawn "nautilus"; }
     Mod+Shift+B { spawn "helium-browser"; }
+    Mod+B { spawn "brave-browser-nightly"; }
     Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
 
     // System monitors & tools
@@ -353,14 +375,12 @@ binds {
     // Quick web shortcuts (URLs must be quoted strings!)
     // Creative & Web Apps
     Mod+Shift+Y { spawn "helium-browser" "--profile-directory=Default" "--app=https://youtube.com"; }
-    Mod+Alt+M { spawn "helium-browser" "--profile-directory=Default" "--app=https://music.youtube.com"; }
-    Mod+Shift+W { spawn "helium-browser" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
-    Mod+Shift+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com"; }
-    Mod+Shift+Alt+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
-    Mod+Shift+Alt+F { spawn "helium-browser" "--profile-directory=Default" "--app=https://www.fancode.com"; }
+        Mod+Alt+M { spawn "helium-browser" "--profile-directory=Default" "--app=https://music.youtube.com"; }
+            Mod+Shift+W { spawn "helium-browser" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
+                Mod+Shift+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com"; }
+                    Mod+Shift+Alt+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
+                        Mod+Shift+Alt+F { spawn "helium-browser" "--profile-directory=Default" "--app=https://www.fancode.com"; }
 
-    // Optional (uncomment when you actually have DaVinci Resolve installed)
-    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
-}
-
-
+                            // Optional (uncomment when you actually have DaVinci Resolve installed)
+                            //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
+                        }

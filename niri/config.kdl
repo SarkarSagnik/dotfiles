@@ -19,7 +19,11 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-include "dms/cursor.kdl"
+cursor {
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 20
+}
+
 
 output "eDP-1" {
     mode "1920x1080@144.0"
@@ -64,6 +68,8 @@ layout {
 }
 
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "elephant"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -149,6 +155,12 @@ window-rule {
     open-maximized true
 }
 
+window-rule {
+    match title=r#"nvim$"#
+    open-maximized true
+}
+
+
 // GNOME apps – proper border drawing
 window-rule {
     match app-id=r#"^org\.gnome\."#
@@ -233,7 +245,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+D { spawn "wofi" "--show" "drun"; }
+    Mod+D {spawn "walker"; }// { spawn "wofi" "--show" "drun"; }
 
     // Brightness and Volume controls
 
@@ -359,8 +371,10 @@ binds {
     Mod+Shift+Alt+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
     Mod+Shift+Alt+F { spawn "helium-browser" "--profile-directory=Default" "--app=https://www.fancode.com"; }
 
-    // Optional (uncomment when you actually have DaVinci Resolve installed)
-    //Mod+Shift+E { spawn "flatpak" "run" "com.blackmagicdesign.resolve"; }
+    // Optional (uncomment when you actually have kdenlive installed)
+    Mod+Shift+E { spawn "emacs" ; }
 }
 
 
+
+include "./noctalia.kdl"

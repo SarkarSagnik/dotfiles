@@ -18,39 +18,7 @@
     brave
   ];
 
-  # Niri configuration
-  programs.niri = {
-    enable = true;
-    settings = {
-      input = {
-        keyboard = {
-          repeat-delay = 200;
-          repeat-rate = 35;
-        };
-        touchpad = {
-          tap-button-map = "left-right-middle";
-        };
-      };
-      outputs = {
-        "eDP-1" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 60.0;
-          };
-        };
-      };
-      layout = {
-        focus-ring = {
-          width = 3;
-        };
-        border = {
-          width = 2;
-        };
-      };
-      prefer-no-csd = true;
-    };
-  };
+  # Niri configuration (system-level in configuration.nix)
 
   # Noctalia-shell bar configuration
   programs.noctalia-shell = {

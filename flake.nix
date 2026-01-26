@@ -1,4 +1,4 @@
- {
+{
   description = "NixOS from Scratch";
 
   inputs = {
@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
@@ -26,4 +26,4 @@
       ];
     };
   };
-}  
+} 

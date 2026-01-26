@@ -18,7 +18,8 @@
     brave
   ];
 
-  # Niri configuration (system-level in configuration.nix)
+  # Niri configuration file management
+  home.file.".config/niri/config.kdl".source = ./niri-config.kdl;
 
   # Noctalia-shell bar configuration
   programs.noctalia-shell = {

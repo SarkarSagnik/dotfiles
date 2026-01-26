@@ -19,7 +19,7 @@
   ];
 
   # Niri configuration file management
-  home.file.".config/niri/config.kdl".source = ./niri-config.kdl;
+  home.file.".config/niri/config.kdl".source = ./config.kdl;
 
   # Noctalia-shell bar configuration
   programs.noctalia-shell = {

@@ -1,0 +1,7 @@
+gh
+gimp
+kdenlive
+neovim
+niri
+niri-settings
+noctalia-shell

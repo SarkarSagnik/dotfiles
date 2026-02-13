@@ -1,12 +1,8 @@
-// ~/.config/niri/config.kdl
-
 prefer-no-csd
+
 input {
     keyboard {
-        xkb {
-            // layout "us"
-            // options "ctrl:nocaps"
-        }
+        xkb {}
         numlock
     }
 
@@ -15,15 +11,13 @@ input {
         natural-scroll
     }
 
-    // Focus follows mouse 
     focus-follows-mouse max-scroll-amount="0%"
 }
 
 cursor {
-  xcursor-theme "Bibata-Modern-Ice"
-  xcursor-size 20
+    xcursor-theme "Breeze_Dark"
+    xcursor-size 24
 }
-
 
 output "eDP-1" {
     mode "1920x1080@144.0"
@@ -69,14 +63,10 @@ layout {
 
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "qs" "-c" "noctalia-shell"
-spawn-at-startup "elephant"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-hotkey-overlay {
-    // skip-at-startup
-}
-
+hotkey-overlay {}
 
 animations {
     window-open {
@@ -102,21 +92,14 @@ animations {
     }
 }
 
-// ====================== WINDOW RULES ======================
-
-// Rounded corners for all windows
+// Window Rules
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-// Firefox / Helium PiP → floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-window-rule {
-    match app-id=r#"helium$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
@@ -125,49 +108,41 @@ window-rule {
     open-floating true
 }
 
-
-// Opacity Rules
 window-rule {
     match is-active=false
     exclude app-id="brave-browser-nightly"
-    exclude app-id="helium-browser"
     exclude app-id="google-chrome"
     exclude app-id="Ptyxis"
     opacity 0.80
 }
+
 window-rule {
     match is-active=true
     opacity 0.95
 }
 
-// Steam toast notifications → floating bottom-right
 window-rule {
     match app-id=r#"steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
     open-floating true
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
-// Open browsers maximized
+// Fullscreen view
 window-rule {
     match app-id=r#"brave$"#
     match app-id=r#"zen$"#
     match app-id=r#"helium$"#
-    open-maximized true
-}
-
-window-rule {
     match title=r#"nvim$"#
+    match app-id=r#"firefox$"#
+    match app-id="ghostty"
     open-maximized true
 }
 
-
-// GNOME apps – proper border drawing
 window-rule {
     match app-id=r#"^org\.gnome\."#
     draw-border-with-background false
 }
 
-// Centered utilities (tiled, 50% width)
 window-rule {
     match app-id="gnome-control-center"
     match app-id="pavucontrol"
@@ -178,7 +153,6 @@ window-rule {
     open-floating false
 }
 
-// Wide apps (80% width)
 window-rule {
     match app-id="Spotify"
     match app-id="vesktop"
@@ -190,7 +164,6 @@ window-rule {
     }
 }
 
-// Media apps → "media" workspace, focused
 window-rule {
     match app-id="Spotify"
     match app-id="vesktop"
@@ -198,7 +171,6 @@ window-rule {
     open-focused true
 }
 
-// Floating tools
 window-rule {
     match app-id=r#"^blueman-manager$"#
     match app-id=r#"^xdg-desktop-portal$"#
@@ -210,7 +182,6 @@ window-rule {
     open-floating true
 }
 
-// TUIs
 window-rule {
     match title="tui"
     open-floating true
@@ -221,6 +192,7 @@ window-rule {
         fixed 800
     }
 }
+
 window-rule {
     match title="code-editor-tui"
     default-column-width {
@@ -231,55 +203,42 @@ window-rule {
     }
 }
 
-// Terminals – clean borders
 window-rule {
     match app-id="ghostty"
     match app-id="kitty"
     draw-border-with-background false
 }
 
-
-// ====================== KEYBINDS ======================
-
+// Keybinds
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+D {spawn "walker"; }// { spawn "wofi" "--show" "drun"; }
+    Mod+D { spawn "wofi" "--show" "drun"; }
 
-    // Brightness and Volume controls
-
-    //Volume Up
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
     }
 
-    //Volume Down
     XF86AudioLowerVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
     }
 
-    //Volume Mute
     XF86AudioMute allow-when-locked=true {
         spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
     }
 
-    //Mic Mute
     XF86AudioMicMute allow-when-locked=true {
         spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
     }
 
-
-    //Brightness Up
     XF86MonBrightnessUp allow-when-locked=true {
         spawn "brightnessctl" "set" "+10%";
     }
 
-    //Brightness Down
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "set" "10%-";
     }
-
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
@@ -346,35 +305,14 @@ binds {
     Ctrl+Alt+Delete { quit; }
     Mod+Shift+P { power-off-monitors; }
 
-
-    // Core apps
     Mod+Shift+F { spawn "nautilus"; }
-    Mod+Shift+B { spawn "helium-browser"; }
     Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
-
-    // System monitors & tools
+    Mod+Shift+A { spawn "LM-Studio-0.4.2-2-x64.AppImage"; }
     Mod+Shift+T { spawn "ghostty" "-e" "btop"; }
     Mod+Shift+D { spawn "ghostty" "-e" "lazydocker"; }
-
-    // Flatpak / frequently used apps
-    Mod+Shift+M { spawn "flatpak" "run" "com.spotify.Client"; }
-    Mod+Shift+G { spawn "flatpak" "run" "org.signal.Signal"; }
-    Mod+Shift+Z { spawn "flatpak" "run" "app.zen_browser.zen"; }
-    Mod+Shift+O { spawn "obsidian"; }
-
-    // Quick web shortcuts (URLs must be quoted strings!)
-    // Creative & Web Apps
-    Mod+Shift+Y { spawn "helium-browser" "--profile-directory=Default" "--app=https://youtube.com"; }
-    Mod+Alt+M { spawn "helium-browser" "--profile-directory=Default" "--app=https://music.youtube.com"; }
-    Mod+Shift+W { spawn "helium-browser" "--profile-directory=Default" "--app=https://web.whatsapp.com"; }
-    Mod+Shift+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com"; }
-    Mod+Shift+Alt+X { spawn "helium-browser" "--profile-directory=Default" "--app=https://x.com/compose/post"; }
-    Mod+Shift+Alt+F { spawn "helium-browser" "--profile-directory=Default" "--app=https://www.fancode.com"; }
-
-    // Optional (uncomment when you actually have kdenlive installed)
-    Mod+Shift+E { spawn "emacs" ; }
+    Mod+Shift+Z { spawn "flatpak" "run" "org.mozilla.firefox"; }
+    Mod+Shift+O { spawn "flatpak" "run" "md.obsidian.Obsidian"; }
+    Mod+Shift+E { spawn "flatpak" "run" "org.kde.kdenlive"; }
 }
-
-
 
 include "./noctalia.kdl"
